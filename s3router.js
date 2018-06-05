@@ -86,13 +86,16 @@ function S3Router(options, middleware) {
           res.set(options.headers);
         }
 
+        console.log('policy options', options.policy)
+
         var s3 = getS3();
         var params = {
             Bucket: S3_BUCKET,
             Key: fileKey,
             Expires: 60,
             ContentType: mimeType,
-            ACL: options.ACL || 'private'
+            ACL: options.ACL || 'private',
+            policy: options.policy
         };
         s3.getSignedUrl('putObject', params, function(err, data) {
             if (err) {
