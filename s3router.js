@@ -86,7 +86,7 @@ function S3Router(options, middleware) {
           res.set(options.headers);
         }
 
-        console.log('conditions options', options.conditions)
+        console.log(req)
 
         var s3 = getS3();
         var params = {
@@ -94,8 +94,7 @@ function S3Router(options, middleware) {
             Key: fileKey,
             Expires: 60,
             ContentType: mimeType,
-            ACL: options.ACL || 'private',
-            conditions: options.conditions
+            ACL: options.ACL || 'private'
         };
         s3.getSignedUrl('putObject', params, function(err, data) {
             if (err) {
