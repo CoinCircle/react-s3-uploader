@@ -34,6 +34,7 @@ var ReactS3Uploader = createReactClass({
         s3path: PropTypes.string,
         inputRef: PropTypes.func,
         autoUpload: PropTypes.bool
+        maxFileSize: PropTypes.number,
     },
 
     getDefaultProps: function() {
@@ -82,7 +83,8 @@ var ReactS3Uploader = createReactClass({
             contentDisposition: this.props.contentDisposition,
             server: this.props.server,
             scrubFilename: this.props.scrubFilename,
-            s3path: this.props.s3path
+            s3path: this.props.s3path,
+            maxFileSize: this.props.maxFileSize
         });
     },
 
@@ -109,7 +111,7 @@ var ReactS3Uploader = createReactClass({
         if ( this.props.autoUpload ) {
             additional.onChange = this.uploadFile;
         }
-        
+
         var temporaryProps = objectAssign({}, this.props, additional);
         var inputProps = {};
 
