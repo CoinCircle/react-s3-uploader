@@ -86,8 +86,6 @@ function S3Router(options, middleware) {
           res.set(options.headers);
         }
 
-        console.log(req)
-
         var s3 = getS3();
         var params = {
             Bucket: S3_BUCKET,

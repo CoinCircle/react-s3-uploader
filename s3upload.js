@@ -50,6 +50,11 @@ S3Upload.prototype.handleFileSelect = function(files) {
     var result = [];
     for (var i=0; i < files.length; i++) {
         var file = files[i];
+        console.log('max file size', this.maxFileSize, file.size)
+        if (!(this.maxFileSize && file.size <= this.maxFileSize)) {
+          console.log('skipping')
+          continue
+        }
         this.preprocess(file, function(processedFile){
           this.onProgress(0, 'Waiting', processedFile);
           result.push(this.uploadFile(processedFile));
