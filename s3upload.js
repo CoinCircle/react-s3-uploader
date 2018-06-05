@@ -11,20 +11,20 @@ S3Upload.prototype.fileElement = null;
 S3Upload.prototype.files = null;
 
 S3Upload.prototype.onFinishS3Put = function(signResult, file) {
-    return console.log('base.onFinishS3Put()', signResult.publicUrl);
+  //return console.log('base.onFinishS3Put()', signResult.publicUrl);
 };
 
 S3Upload.prototype.preprocess = function(file, next) {
-    console.log('base.preprocess()', file);
+  //console.log('base.preprocess()', file);
     return next(file);
 };
 
 S3Upload.prototype.onProgress = function(percent, status, file) {
-    return console.log('base.onProgress()', percent, status);
+  //return console.log('base.onProgress()', percent, status);
 };
 
 S3Upload.prototype.onError = function(status, file) {
-    return console.log('base.onError()', status);
+  //return console.log('base.onError()', status);
 };
 
 S3Upload.prototype.onSignedUrl = function(result) {};
@@ -50,9 +50,7 @@ S3Upload.prototype.handleFileSelect = function(files) {
     var result = [];
     for (var i=0; i < files.length; i++) {
         var file = files[i];
-        console.log('max file size', this.maxFileSize, file.size)
         if (!(this.maxFileSize && file.size <= this.maxFileSize)) {
-          console.log('skipping')
           continue
         }
         this.preprocess(file, function(processedFile){
